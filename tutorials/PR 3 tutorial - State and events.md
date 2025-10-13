@@ -78,6 +78,8 @@ Before implementing: Which props are most critical to have defaults for? What co
 
 ## Step 2: Adding interactive UI elements
 
+![hover-button-chat-thread](https://github.com/user-attachments/assets/841f39d3-f796-435f-9098-d473f13fa9ab)
+
 ### 🤔 Problem to solve
 
 User's might want to be able to delete a chat thread. First you need to add delete buttons to each chat thread that appear on hover and provide clear visual feedback about their destructive action.
@@ -132,6 +134,8 @@ Add a delete button to each thread item in the chat sidebar:
 
 ## Step 3: Handling events and debugging
 
+<img width="1198" height="386" alt="console-log-on-button-click" src="https://github.com/user-attachments/assets/800b9bfc-c840-445c-b875-a7c199375402" />
+
 ### 🤔 Problem to solve
 
 Pretty buttons are useless without functionality! You need to respond to user clicks on the delete button and understand how events work in React. The challenge: the button is inside a link, so you need to prevent the link from being triggered when clicking delete.
@@ -183,6 +187,8 @@ What's the difference between `stopPropagation()` and `preventDefault()`? When w
 ---
 
 ## Step 4: Managing state with React hooks
+
+![delete-thread-on-click](https://github.com/user-attachments/assets/38a59ae1-1df3-49c1-80a0-bfad362747a2)
 
 ### 🤔 Problem to solve
 
@@ -237,6 +243,8 @@ Before implementing: How would you remove an item from an array without modifyin
 ---
 
 ## Step 5: Form handling and component state
+
+![pending-submit-on-chat-input](https://github.com/user-attachments/assets/49f35a2b-682f-44cd-88ae-66458b65f930)
 
 ### 🤔 Problem to solve
 
@@ -302,6 +310,8 @@ What happens if you forget `event.preventDefault()`? Try it and see! Also, why d
 
 ## Step 6: State lifting and parent-child communication
 
+![add-message-on-submit](https://github.com/user-attachments/assets/2119afe2-d10d-4e20-b1c3-e7d3f138b254)
+
 ### 🤔 Problem to solve
 
 The chat input can submit but messages don't appear anywhere! You need to connect form submission to the messages list. This requires understanding where state should live and how child components communicate changes back to parents. The `ChatInput` and `ChatMessages` components are siblings, so their shared state must live in their common parent.
@@ -366,6 +376,8 @@ Where should the messages state live? In ChatInput, ChatMessages, or Home? What 
 
 ## Step 7: Advanced state patterns with real-time filtering
 
+![filter-chat-threads](https://github.com/user-attachments/assets/2e4ee14b-a3b3-4f70-8daf-1b1719a94b82)
+
 ### 🤔 Problem to solve
 
 As users accumulate many chat threads, finding specific conversations becomes difficult. You need to add search functionality that filters threads in real-time as users type. This introduces the concept of controlled components and computed state - important patterns for creating responsive, interactive UIs.
@@ -382,7 +394,7 @@ As users accumulate many chat threads, finding specific conversations becomes di
 
 Add a search input that filters the thread list in real-time:
 
-1. In the `Sidebar` component (or wherever threads are managed), add state for the search value
+1. In the `ChatThreadsList` component, add state for the search value
 2. Create an `<input>` element above the threads list
 3. Make it a **controlled component** by:
    - Setting its `value` prop to the search state
