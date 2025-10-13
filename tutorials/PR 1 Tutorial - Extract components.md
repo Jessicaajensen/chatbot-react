@@ -24,13 +24,68 @@ In this tutorial, we'll transform a monolithic React application into a well-str
 
 ---
 
-## Step 1: Extract SidebarHeader component
+## Step 1: Extract Sidebar component
+
+**🔗 Commit**: [`2c8065b`](1/commits/2c8065b)
+
+### 🤔 Problem to solve
+
+Our Layout component is doing too many things at once. It's handling both the overall page structure AND all the sidebar content (header, navigation, footer). This violates the single responsibility principle and makes the code harder to understand and maintain.
+
+### 💡 Key concepts
+
+- **Function Components**: Creating React components as JavaScript functions
+- **Component Extraction**: Moving UI logic into separate, focused components
+- **Component Composition**: Using one component inside another
+- **Separation of Concerns**: Each component should have one clear responsibility
+- **JSX Returns**: How components return UI elements
+
+### 🔍 What changed
+
+We extracted all the sidebar JSX into a new `Sidebar` function component. The Layout component now focuses only on the overall page structure, while the Sidebar component handles all navigation-related UI.
+
+```jsx
+// New Sidebar component
+function Sidebar() {
+  return (
+    <aside className="sidebar">{/* All sidebar content moved here */}</aside>
+  );
+}
+
+// Simplified Layout component
+export default function Layout() {
+  return (
+    <div className="app-layout">
+      <Sidebar /> {/* Using our new component */}
+      <main className="main-content">
+        <Outlet />
+      </main>
+    </div>
+  );
+}
+```
+
+### 💬 Discussion points
+
+1. **Component Boundaries**: What makes this a good place to split the component?
+2. **Responsibility**: What is the Layout component responsible for now vs. before?
+3. **Reusability**: How does extracting Sidebar make it potentially reusable?
+
+### ✅ Check your understanding
+
+- **Component Thinking**: Look at the Layout component now - what is its single responsibility?
+- **Composition**: How does the Layout component "use" the Sidebar component?
+- **Next Steps**: What parts of the Sidebar component could potentially be extracted further?
+
+---
+
+## Step 2: Extract SidebarHeader component
 
 **🔗 Commit**: [`b6b7cdb`](1/commits/b6b7cdb)
 
 ### 🤔 Problem to solve
 
-Our layout component contains a lot of mixed responsibilities. The sidebar header (title + new chat button) is mixed in with other sidebar logic. This makes the code harder to read and maintain.
+Now that we have a separate Sidebar component, we can see it still contains multiple responsibilities. The sidebar header (title + new chat button) is mixed in with navigation lists and footer content. Let's continue breaking it down into smaller, focused components.
 
 ### 💡 Key concepts
 
@@ -69,7 +124,7 @@ function SidebarHeader() {
 
 ---
 
-## Step 2: Extract SidebarFooter component
+## Step 3: Extract SidebarFooter component
 
 **🔗 Commit**: [`70fe14f`](1/commits/70fe14f)
 
@@ -98,7 +153,7 @@ Created `SidebarFooter` component to handle the user profile area with avatar an
 
 ---
 
-## Step 3: Extract ChatThreadsList component
+## Step 4: Extract ChatThreadsList component
 
 **🔗 Commit**: [`e5ac28d`](1/commits/e5ac28d)
 
@@ -127,7 +182,7 @@ Extracted the chat threads navigation into `ChatThreadsList` component, maintain
 
 ---
 
-## Step 4: Extract ChatThreadItem with props
+## Step 5: Extract ChatThreadItem with props
 
 **🔗 Commit**: [`75ee544`](1/commits/75ee544)
 
@@ -171,7 +226,7 @@ function ChatThreadItem(props) {
 
 ---
 
-## Step 5: Move Sidebar components to separate file
+## Step 6: Move Sidebar components to separate file
 
 **🔗 Commit**: [`8f3919a`](1/commits/8f3919a) _(Note: Commit message is misleading - this actually moves sidebar components to external file)_
 
@@ -219,7 +274,7 @@ import Sidebar from "../components/Sidebar.jsx";
 
 ---
 
-## Step 6: Extract Message component with props
+## Step 7: Extract Message component with props
 
 **🔗 Commit**: [`4494bbe`](1/commits/4494bbe)
 
@@ -248,7 +303,7 @@ Created `Message` component that accepts props for sender type and content. Mess
 
 ---
 
-## Step 7: Extract ChatMessages component
+## Step 8: Extract ChatMessages component
 
 **🔗 Commit**: [`90bc5ab`](1/commits/90bc5ab)
 
@@ -273,7 +328,7 @@ Created `ChatMessages` component that renders the scrollable area containing mul
 
 ---
 
-## Step 8: Extract ChatInput component
+## Step 9: Extract ChatInput component
 
 **🔗 Commit**: [`f6c1923`](1/commits/f6c1923)
 
@@ -297,7 +352,7 @@ Created `ChatInput` component containing the message textarea and send button, c
 
 ---
 
-## Step 9: Move Chat components to external file
+## Step 10: Move Chat components to external file
 
 **🔗 Commit**: [`f6d5cda`](1/commits/f6d5cda)
 
@@ -351,7 +406,7 @@ import { Message, ChatMessages, ChatInput } from "../components/Chat.jsx";
 
 ---
 
-## Step 10: Use props.children for message content
+## Step 11: Use props.children for message content
 
 **🔗 Commit**: [`5117c45`](1/commits/5117c45)
 
