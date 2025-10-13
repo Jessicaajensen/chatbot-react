@@ -21,11 +21,23 @@ You should be comfortable with:
 - ES6 features like destructuring, arrow functions, and template literals
 - Basic CSS and HTML concepts
 
+## 📑 Table of Contents
+
+1. [Mastering props destructuring](#step-1)
+2. [Adding interactive UI elements](#step-2)
+3. [Handling events and debugging](#step-3)
+4. [Managing state with React hooks](#step-4)
+5. [Form handling and component state](#step-5)
+6. [State lifting and parent-child communication](#step-6)
+7. [Advanced state patterns with real-time filtering](#step-7)
+
 ## 🗺️ Overview
 
 In this tutorial, we'll build upon our basic chat application by adding interactive features. You'll learn how to handle user interactions, manage changing data with state, and create responsive user interfaces. We'll start with simple button clicks and progress to complex form handling and real-time filtering.
 
 ---
+
+<a name="step-1"></a>
 
 ## Step 1: Mastering props destructuring
 
@@ -75,6 +87,8 @@ Before implementing: Which props are most critical to have defaults for? What co
 - Check that the `ChatThreadsList` component works even without the `threads` prop
 
 ---
+
+<a name="step-2"></a>
 
 ## Step 2: Adding interactive UI elements
 
@@ -132,6 +146,8 @@ Add a delete button to each thread item in the chat sidebar:
 
 ---
 
+<a name="step-3"></a>
+
 ## Step 3: Handling events and debugging
 
 <img width="1198" height="386" alt="console-log-on-button-click" src="https://github.com/user-attachments/assets/800b9bfc-c840-445c-b875-a7c199375402" />
@@ -185,6 +201,8 @@ What's the difference between `stopPropagation()` and `preventDefault()`? When w
 - Experiment: try removing `stopPropagation()` and see what happens
 
 ---
+
+<a name="step-4"></a>
 
 ## Step 4: Managing state with React hooks
 
@@ -241,6 +259,8 @@ Before implementing: How would you remove an item from an array without modifyin
 - Challenge: try modifying the delete function to restore a thread after 3 seconds using `setTimeout`
 
 ---
+
+<a name="step-5"></a>
 
 ## Step 5: Form handling and component state
 
@@ -308,6 +328,8 @@ What happens if you forget `event.preventDefault()`? Try it and see! Also, why d
 
 ---
 
+<a name="step-6"></a>
+
 ## Step 6: State lifting and parent-child communication
 
 ![add-message-on-submit](https://github.com/user-attachments/assets/2119afe2-d10d-4e20-b1c3-e7d3f138b254)
@@ -373,6 +395,8 @@ Where should the messages state live? In ChatInput, ChatMessages, or Home? What 
 - Challenge: modify the addMessage function to add a timestamp to each message
 
 ---
+
+<a name="step-7"></a>
 
 ## Step 7: Advanced state patterns with real-time filtering
 
