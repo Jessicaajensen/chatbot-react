@@ -402,9 +402,7 @@ Modified `Message` component to use `props.children` instead of a content prop, 
 
 ---
 
-## 🎉 Congratulations!
-
-You've successfully learned the fundamentals of React component architecture. You now understand:
+**🏁 Congratulations:** You've successfully learned the fundamentals of React component architecture. You now understand:
 
 ✅ **Component Extraction**: Breaking large components into smaller, focused pieces  
 ✅ **Props**: Passing data from parent to child components  
