@@ -1,26 +1,6 @@
 # Dynamic routing with React Router v7 - Step-by-step tutorial
 
-## 🎯 Learning objectives
-
-By completing this tutorial, you will:
-
-- Understand what dynamic routes are and why they're essential for modern SPAs
-- Configure dynamic route patterns using React Router v7's `routes.js` file
-- Create new route components for different parts of your application
-- Use the `Link` component for client-side navigation (no page reloads!)
-- Extract and use URL parameters with the `useParams()` hook
-- Build a chatbot application with proper URL structure for different conversations
-
-## 📋 Prerequisites
-
-Before starting this tutorial, you should:
-
-- Have completed the previous tutorials on React components and state management
-- Understand React hooks (`useState`, basic hook concepts)
-- Be familiar with the existing chatbot project structure
-- Know basic JavaScript destructuring syntax
-
-## 📑 Table of Contents
+## 📋 Table of Contents
 
 1. [Add dynamic routes for chat threads and new chat](#step-1)
 2. [Use useParams hook to access threadId from URL](#step-2)
