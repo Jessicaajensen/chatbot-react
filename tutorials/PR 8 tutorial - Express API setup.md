@@ -22,6 +22,16 @@ By the end of this tutorial, you'll understand:
 
 **Important**: This is a hands-on tutorial. Try to implement each step yourself before looking at the reference commit. The commits are there to help you if you get stuck or to compare your solution afterwards.
 
+## 🧑‍💻 Today's starting point
+
+If you haven't fully completed the prior tutorials, you may copy the starting point of this tutorial by running this command in the root of your local repository:
+
+```bash
+npx degit --force bewildergeist/chatbot-react-postgres#pr-8-start
+```
+
+**Important**: Make a commit of this initial version before you start changing anything.
+
 ---
 
 <a name="step-1"></a>

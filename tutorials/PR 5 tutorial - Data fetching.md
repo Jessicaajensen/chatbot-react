@@ -20,6 +20,16 @@ You'll learn how to:
 
 By the end, you'll have converted a basic chat application from client-side state management to React Router's declarative data loading pattern, with visual feedback for navigation states.
 
+## 🧑‍💻 Today's starting point
+
+If you haven't fully completed the prior tutorials, you may copy the starting point of this tutorial by running this command in the root of your local repository:
+
+```bash
+npx degit --force bewildergeist/chatbot-react-postgres#pr-5-start
+```
+
+**Important**: Make a commit of this initial version before you start changing anything.
+
 ---
 
 <a name="step-1"></a>

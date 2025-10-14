@@ -23,6 +23,16 @@ By the end, users will be able to type messages in your chat interface and save 
 
 **Key difference**: GET requests fetch existing data. POST requests create new data.
 
+## 🧑‍💻 Today's starting point
+
+If you haven't fully completed the prior tutorials, you may copy the starting point of this tutorial by running this command in the root of your local repository:
+
+```bash
+npx degit --force bewildergeist/chatbot-react-postgres#pr-10-start
+```
+
+**Important**: Make a commit of this initial version before you start changing anything.
+
 ---
 
 <a name="step-1"></a>

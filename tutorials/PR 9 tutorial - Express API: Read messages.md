@@ -22,6 +22,16 @@ You'll learn how to:
 
 By the end, clicking on a thread in your sidebar will load that specific conversation from your custom API!
 
+## 🧑‍💻 Today's starting point
+
+If you haven't fully completed the prior tutorials, you may copy the starting point of this tutorial by running this command in the root of your local repository:
+
+```bash
+npx degit --force bewildergeist/chatbot-react-postgres#pr-9-start
+```
+
+**Important**: Make a commit of this initial version before you start changing anything.
+
 ---
 
 <a name="step-1"></a>

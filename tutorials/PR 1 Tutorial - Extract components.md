@@ -22,6 +22,16 @@ In this tutorial, we'll transform a monolithic React application into a well-str
 
 **What we're building**: A chatbot interface with a sidebar for navigation and a main chat area - but the focus is on _how_ we organize the code, not _what_ it does.
 
+## 🧑‍💻 Today's starting point
+
+To skip the initial setup of the project, you can copy the starting point of this tutorial by running this command in the root of your local repository:
+
+```bash
+npx degit --force bewildergeist/chatbot-react-postgres#pr-1-start
+```
+
+**Important**: Make a commit of this initial version before you start changing anything.
+
 ---
 
 ## Step 1: Extract Sidebar component

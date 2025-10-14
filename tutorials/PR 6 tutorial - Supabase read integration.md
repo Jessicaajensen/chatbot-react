@@ -18,6 +18,16 @@ In this tutorial, you'll learn how to integrate Supabase—a powerful, open-sour
 - Learn REST API concepts: endpoints, query parameters, headers, and filtering
 - Handle asynchronous data loading in React Router loaders
 
+## 🧑‍💻 Today's starting point
+
+If you haven't fully completed the prior tutorials, you may copy the starting point of this tutorial by running this command in the root of your local repository:
+
+```bash
+npx degit --force bewildergeist/chatbot-react-postgres#pr-6-start
+```
+
+**Important**: Make a commit of this initial version before you start changing anything.
+
 ---
 
 <a name="step-1"></a>

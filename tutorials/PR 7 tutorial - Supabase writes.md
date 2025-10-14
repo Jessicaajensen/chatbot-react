@@ -23,6 +23,16 @@ By the end of this tutorial, you'll understand:
 
 **Prerequisites**: You should have completed the previous tutorials on React Router data loading and have a working chat application that reads from Supabase.
 
+## 🧑‍💻 Today's starting point
+
+If you haven't fully completed the prior tutorials, you may copy the starting point of this tutorial by running this command in the root of your local repository:
+
+```bash
+npx degit --force bewildergeist/chatbot-react-postgres#pr-7-start
+```
+
+**Important**: Make a commit of this initial version before you start changing anything.
+
 ---
 
 <a name="step-1"></a>

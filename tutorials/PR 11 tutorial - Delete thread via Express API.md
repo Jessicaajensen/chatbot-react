@@ -12,6 +12,16 @@ In this tutorial, you'll implement the ability to delete threads through your cu
 
 ⚠️ **Important**: Unlike read operations or creating new data, delete operations are irreversible. This tutorial emphasizes the care and consideration required when implementing such features.
 
+## 🧑‍💻 Today's starting point
+
+If you haven't fully completed the prior tutorials, you may copy the starting point of this tutorial by running this command in the root of your local repository:
+
+```bash
+npx degit --force bewildergeist/chatbot-react-postgres#pr-11-start
+```
+
+**Important**: Make a commit of this initial version before you start changing anything.
+
 ---
 
 <a name="step-1"></a>

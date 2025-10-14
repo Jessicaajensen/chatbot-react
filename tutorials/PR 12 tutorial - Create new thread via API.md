@@ -12,6 +12,16 @@ In this tutorial, you'll implement the final piece of your CRUD migration from S
 
 🎉 **Milestone**: After completing this tutorial, your frontend will be completely independent of Supabase's REST API!
 
+## 🧑‍💻 Today's starting point
+
+If you haven't fully completed the prior tutorials, you may copy the starting point of this tutorial by running this command in the root of your local repository:
+
+```bash
+npx degit --force bewildergeist/chatbot-react-postgres#pr-12-start
+```
+
+**Important**: Make a commit of this initial version before you start changing anything.
+
 ---
 
 <a name="step-1"></a>

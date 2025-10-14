@@ -19,6 +19,16 @@ You'll implement this in two major steps:
 1. **Set up dynamic routes** - Configure route patterns and create route components
 2. **Access URL parameters** - Use the `useParams()` hook to make routes truly dynamic
 
+## 🧑‍💻 Today's starting point
+
+If you haven't fully completed the prior tutorials, you may copy the starting point of this tutorial by running this command in the root of your local repository:
+
+```bash
+npx degit --force bewildergeist/chatbot-react-postgres#pr-4-start
+```
+
+**Important**: Make a commit of this initial version before you start changing anything.
+
 ---
 
 <a name="step-1"></a>

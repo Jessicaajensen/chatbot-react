@@ -35,6 +35,16 @@ You should be comfortable with:
 
 In this tutorial, we'll build upon our basic chat application by adding interactive features. You'll learn how to handle user interactions, manage changing data with state, and create responsive user interfaces. We'll start with simple button clicks and progress to complex form handling and real-time filtering.
 
+## 🧑‍💻 Today's starting point
+
+If you haven't fully completed the prior tutorials, you may copy the starting point of this tutorial by running this command in the root of your local repository:
+
+```bash
+npx degit --force bewildergeist/chatbot-react-postgres#pr-3-start
+```
+
+**Important**: Make a commit of this initial version before you start changing anything.
+
 ---
 
 <a name="step-1"></a>

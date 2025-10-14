@@ -17,6 +17,16 @@ This tutorial follows the real development progression of refactoring a React ch
 
 We'll work through 4 commits that demonstrate the evolution from hardcoded components to a well-structured React application using modern patterns.
 
+## 🧑‍💻 Today's starting point
+
+If you haven't fully completed the prior tutorials, you may copy the starting point of this tutorial by running this command in the root of your local repository:
+
+```bash
+npx degit --force bewildergeist/chatbot-react-postgres#pr-2-start
+```
+
+**Important**: Make a commit of this initial version before you start changing anything.
+
 ---
 
 ## Step 1: Extract messages to static array with map() rendering
