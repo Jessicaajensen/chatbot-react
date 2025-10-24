@@ -1,6 +1,7 @@
 import {
   useLoaderData,
   useActionData,
+  Form,
   Link,
   useRouteError,
   href,
@@ -8,6 +9,68 @@ import {
 } from "react-router";
 import { ChatMessages, ChatInput } from "../components/Chat.jsx";
 import { apiFetch } from "../lib/apiFetch.js";
+
+// Update your frontend/app/routes/chat-thread.jsx component
+
+/**
+ * Helper function to format the "last edited" text
+ */
+export function formatLastEdited(createdAt, updatedAt) {
+  // If never edited (or edited at same time as creation), return null
+  const created = new Date(createdAt);
+  const updated = new Date(updatedAt);
+  
+  // If updated within 1 second of created, consider it not edited
+  if (Math.abs(updated - created) < 1000) {
+    return null;
+  }
+
+  const now = new Date();
+  const diffMs = now - updated;
+  const diffMins = Math.floor(diffMs / 60000);
+  const diffHours = Math.floor(diffMs / 3600000);
+  const diffDays = Math.floor(diffMs / 86400000);
+
+  if (diffMins < 1) return "Edited just now";
+  if (diffMins < 60) return `Edited ${diffMins} minute${diffMins !== 1 ? 's' : ''} ago`;
+  if (diffHours < 24) return `Edited ${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+  if (diffDays < 7) return `Edited ${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+  
+  // For older edits, show the date
+  return `Edited on ${updated.toLocaleDateString()}`;
+}
+
+export default function ChatThread() {
+  const { thread, messages } = useLoaderData();
+  const actionData = useActionData();
+
+  const lastEditedText = formatLastEdited(thread.created_at, thread.updated_at);
+
+  return (
+    <main className="chat-container">
+      <Outlet />
+      <div className="chat-thread-header">
+        <div className="thread-title-section">
+          <h2>{thread.title}</h2>
+          {lastEditedText && (
+            <span className="last-edited-indicator">{lastEditedText}</span>
+          )}
+        </div>
+        <Link to="edit" className="thread-title-edit-link">
+          Edit
+        </Link>
+      </div>
+      <ChatMessages messages={messages} />
+      <ChatInput />
+      {actionData?.error && (
+        <div className="error-message">{actionData.error}</div>
+      )}
+    </main>
+  );
+}
+
+// Keep your existing clientLoader and clientAction functions
+// ... (rest of the component code stays the same)
 
 /**
  * ERROR BOUNDARY COMPONENT
@@ -23,6 +86,7 @@ import { apiFetch } from "../lib/apiFetch.js";
  * - Thread is not found (404 error)
  * - API request fails
  * - Any error is thrown in loader or action
+ * 
  */
 export function ErrorBoundary() {
   const error = useRouteError();
@@ -163,47 +227,4 @@ export async function clientAction({ params, request }) {
   }
 }
 
-/**
- * Chat Thread Route Component
- *
- * Displays a conversation thread with messages from the database.
- * Now includes nested routing for editing thread title.
- *
- * Key concepts:
- * 1. useLoaderData() HOOK: Accesses data returned from clientLoader
- * 2. useActionData() HOOK: Accesses result returned from clientAction
- * 3. NESTED ROUTES: Outlet component renders child routes
- * 4. LINK NAVIGATION: Link to="edit" navigates to nested edit route
- * 5. ERROR DISPLAY: Shows validation or API errors to the user
- *
- * Routing Structure:
- * - /chat/:threadId → This component (view thread)
- * - /chat/:threadId/edit → Edit form overlay (child route)
- *
- * The Outlet component renders the child route above the thread view,
- * creating an overlay effect for the edit form.
- */
-export default function ChatThread() {
-  // Access the thread and messages data from the loader
-  const { thread, messages } = useLoaderData();
 
-  // Access the action result (success or error)
-  const actionData = useActionData();
-
-  return (
-    <main className="chat-container">
-      <Outlet />
-      <div className="chat-thread-header">
-        <h2>{thread.title}</h2>
-        <Link to="edit" className="thread-title-edit-link">
-          Edit
-        </Link>
-      </div>
-      <ChatMessages messages={messages} />
-      <ChatInput />
-      {actionData?.error && (
-        <div className="error-message">{actionData.error}</div>
-      )}
-    </main>
-  );
-}

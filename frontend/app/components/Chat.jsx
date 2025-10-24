@@ -1,5 +1,6 @@
 import React from "react";
 import { Form } from "react-router";
+import { Link } from "react-router";
 
 /**
  * Chat Components
@@ -30,28 +31,54 @@ function Message({ type = "user", children }) {
   );
 }
 
+
 /**
  * ChatMessages Component
- *
- * Now uses DESTRUCTURING WITH DEFAULT VALUES for safety! Key concepts:
- * 1. DESTRUCTURING: Extract messages directly from props object
- * 2. DEFAULT VALUES: messages = [] prevents errors if prop is undefined
- * 3. ERROR PREVENTION: No more "Cannot read property 'map' of undefined"
- * 4. GRACEFUL DEGRADATION: Component renders empty list if no messages provided
- * 5. CLEANER CODE: Direct access to messages instead of props.messages
+ * Displays a list of messages with edit capability for user messages
  */
-function ChatMessages({ messages = [] }) {
+function ChatMessages({ messages }) {
+  if (!messages || messages.length === 0) {
+    return (
+      <div className="chat-messages">
+        <div className="empty-state">
+          <p>No messages yet. Start the conversation!</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="chat-messages">
-      {/* Using destructured messages with safe default! */}
       {messages.map((message) => (
-        <Message key={message.id} type={message.type}>
-          {message.content}
-        </Message>
+        <div
+          key={message.id}
+          className={`chat-message chat-message-${message.type}`}
+        >
+          <div className="message-header">
+            <span className="message-sender">
+              {message.type === "user" ? "You" : "Bot"}
+            </span>
+            {message.type === "user" && (
+              <Link
+                to={`message/${message.id}/edit`}
+                className="message-edit-link"
+                title="Edit message"
+              >
+                ✏️ Edit
+              </Link>
+            )}
+          </div>
+          <div className="message-content">{message.content}</div>
+          <div className="message-time">
+            {new Date(message.created_at).toLocaleString()}
+          </div>
+        </div>
       ))}
     </div>
   );
 }
+
+export default ChatMessages;
 
 /**
  * ChatInput Component

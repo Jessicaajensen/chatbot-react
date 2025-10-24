@@ -59,7 +59,7 @@ app.get("/api/threads", requireAuth, async (req, res) => {
   try {
     // Execute SQL query using the sql`` tagged template
     const threads = await sql`
-      SELECT id, title, created_at 
+      SELECT id, title, created_at, updated_at 
       FROM threads 
       ORDER BY created_at DESC
     `;
@@ -112,7 +112,7 @@ app.get("/api/threads/:id", requireAuth, async (req, res) => {
     // Execute SQL query with WHERE clause
     // The ${threadId} is safely parameterized by the postgres library
     const threads = await sql`
-      SELECT id, title, created_at 
+      SELECT id, title, created_at, updated_at
       FROM threads 
       WHERE id = ${threadId}
     `;
@@ -162,7 +162,7 @@ app.get("/api/threads/:id/messages", requireAuth, async (req, res) => {
     // Fetch all messages for this thread
     // Filter by thread_id foreign key and sort chronologically
     const messages = await sql`
-      SELECT id, thread_id, type, content, created_at 
+      SELECT id, thread_id, type, content, created_at
       FROM messages 
       WHERE thread_id = ${threadId}
       ORDER BY created_at ASC
@@ -395,9 +395,10 @@ app.patch("/api/threads/:id", requireAuth, async (req, res) => {
     // Only the title field is modified, other fields (created_at) remain unchanged
     const result = await sql`
       UPDATE threads
-      SET title = ${trimmedTitle}
+      SET title = ${trimmedTitle},
+        updated_at = CURRENT_TIMESTAMP
       WHERE id = ${threadId}
-      RETURNING id, title, created_at
+      RETURNING id, title, created_at, updated_at
     `;
 
     // If no thread was updated, it means the thread doesn't exist
@@ -457,6 +458,71 @@ app.delete("/api/threads/:id", requireAuth, async (req, res) => {
     console.error("Error deleting thread:", error);
     res.status(500).json({
       error: "Failed to delete thread",
+    });
+  }
+});
+
+// Add this to your backend/server.js file
+
+/**
+ * PATCH /api/messages/:id
+ *
+ * Updates a message's content.
+ * Only user messages can be edited (not bot messages).
+ */
+app.patch("/api/messages/:id", requireAuth, async (req, res) => {
+  try {
+    const messageId = req.params.id;
+    const { content } = req.body;
+
+    // Validate that content is provided
+    if (!content) {
+      return res.status(400).json({
+        error: "Content is required",
+      });
+    }
+
+    // Validate content is not empty after trimming
+    const trimmedContent = content.trim();
+    if (trimmedContent.length === 0) {
+      return res.status(400).json({
+        error: "Content cannot be empty",
+      });
+    }
+
+    // Update the message in the database
+    // Only allow editing user messages (not bot messages)
+    const result = await sql`
+      UPDATE messages
+      SET content = ${trimmedContent}
+      WHERE id = ${messageId} AND type = 'user'
+      RETURNING id, thread_id, type, content, created_at
+    `;
+
+    // If no message was updated
+    if (result.length === 0) {
+      // Check if message exists but is a bot message
+      const checkMessage = await sql`
+        SELECT type FROM messages WHERE id = ${messageId}
+      `;
+      
+      if (checkMessage.length > 0 && checkMessage[0].type === 'bot') {
+        return res.status(403).json({
+          error: "Bot messages cannot be edited",
+        });
+      }
+      
+      return res.status(404).json({
+        error: "Message not found",
+      });
+    }
+
+    // Return the updated message
+    res.json(result[0]);
+  } catch (error) {
+    console.error("Error updating message:", error);
+    res.status(500).json({
+      error: "Failed to update message",
     });
   }
 });
